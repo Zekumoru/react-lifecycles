@@ -1,0 +1,11 @@
+.Counter {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.Counter .buttons {
+  display: flex;
+  gap: 16px;
+}

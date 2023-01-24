@@ -7,15 +7,3 @@ button {
   padding: 16px;
   cursor: pointer;
 }
-
-.App {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.buttons {
-  display: flex;
-  gap: 16px;
-}
