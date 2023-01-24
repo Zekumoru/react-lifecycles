@@ -1,5 +1,4 @@
 import React from 'react';
-import './Counter.css';
 
 class Counter extends React.Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class Counter extends React.Component {
     console.log('Render called');
 
     return (
-      <div className="Counter">
+      <div className="Counter flex-column">
         <div>Counter: {this.state.counter}</div>
         <div className="buttons">
           <button onClick={this.increment}>Increment</button>
@@ -41,6 +40,11 @@ class Counter extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('ComponentDidUpdate called');
     console.log('-------------------------');
+  }
+
+  componentWillUnmount() {
+    console.log('ComponentWillUnmount called');
+    console.log('---------------------------');
   }
 }
 
