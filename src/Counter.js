@@ -7,6 +7,7 @@ class Counter extends React.Component {
 
     this.state = {
       counter: 0,
+      seed: 0,
     };
   }
 
@@ -17,6 +18,17 @@ class Counter extends React.Component {
   decrement = () => {
     this.setState({ counter: this.state.counter - 1 });
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.seed && state.seed !== props.seed) {
+      return {
+        seed: props.seed,
+        counter: props.seed,
+      };
+    }
+
+    return null;
+  }
 
   componentDidMount() {
     console.log('ComponentDidMount called');
@@ -33,7 +45,6 @@ class Counter extends React.Component {
     }
 
     console.log('ShouldComponentUpdate called - RENDER');
-    console.log(nextProps);
     return true;
   }
 
