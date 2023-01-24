@@ -23,6 +23,20 @@ class Counter extends React.Component {
     console.log('------------------------');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      nextProps.ignoreProp &&
+      this.props.ignoreProp !== nextProps.ignoreProp
+    ) {
+      console.log('ShouldComponentUpdate called - DO NOT RENDER');
+      return false;
+    }
+
+    console.log('ShouldComponentUpdate called - RENDER');
+    console.log(nextProps);
+    return true;
+  }
+
   render() {
     console.log('Render called');
 

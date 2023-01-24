@@ -9,6 +9,7 @@ class App extends React.Component {
 
     this.state = {
       mount: true,
+      ignoreProp: 0,
     };
   }
 
@@ -20,10 +21,14 @@ class App extends React.Component {
     this.setState({ mount: false });
   };
 
+  ignoreProp = () => {
+    this.setState({ ignoreProp: Math.random() });
+  };
+
   render() {
     return (
       <div className="App flex-column">
-        {!this.state.mount || <Counter />}
+        {!this.state.mount || <Counter ignoreProp={this.state.ignoreProp} />}
         <div className="buttons">
           <button onClick={this.mountCounter} disabled={this.state.mount}>
             Mount Counter
@@ -31,6 +36,7 @@ class App extends React.Component {
           <button onClick={this.unmountCounter} disabled={!this.state.mount}>
             Unmount Counter
           </button>
+          <button onClick={this.ignoreProp}>Ignore Prop</button>
         </div>
       </div>
     );
