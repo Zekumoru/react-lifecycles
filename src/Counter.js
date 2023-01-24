@@ -1,5 +1,7 @@
 import React from 'react';
 
+const ErrorComponent = (props) => <div>{props.error.generator}</div>;
+
 class Counter extends React.Component {
   constructor(props) {
     console.log('Constructor called');
@@ -41,6 +43,7 @@ class Counter extends React.Component {
       this.props.ignoreProp !== nextProps.ignoreProp
     ) {
       console.log('ShouldComponentUpdate called - DO NOT RENDER');
+      console.log('--------------------------------------------');
       return false;
     }
 
@@ -48,8 +51,19 @@ class Counter extends React.Component {
     return true;
   }
 
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('GetSnapshotBeforeUpdate called');
+    return null;
+  }
+
   render() {
     console.log('Render called');
+
+    if (this.props.showErrorComponent && this.state.error) {
+      return (
+        <div>We have encountered an error: {this.state.error.message}</div>
+      );
+    }
 
     return (
       <div className="Counter flex-column">
@@ -58,6 +72,7 @@ class Counter extends React.Component {
           <button onClick={this.increment}>Increment</button>
           <button onClick={this.decrement}>Decrement</button>
         </div>
+        {!this.props.showErrorComponent || <ErrorComponent />}
       </div>
     );
   }
@@ -70,6 +85,11 @@ class Counter extends React.Component {
   componentWillUnmount() {
     console.log('ComponentWillUnmount called');
     console.log('---------------------------');
+  }
+
+  componentDidCatch(error, info) {
+    console.log('ComponentDidCatch called');
+    this.setState({ error, info });
   }
 }
 
