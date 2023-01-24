@@ -29,6 +29,13 @@ class Counter extends React.Component {
       };
     }
 
+    if (!props.showErrorComponent && state.error) {
+      return {
+        error: null,
+        info: null,
+      };
+    }
+
     return null;
   }
 
